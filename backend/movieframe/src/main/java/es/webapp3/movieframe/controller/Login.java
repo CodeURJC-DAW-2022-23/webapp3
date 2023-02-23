@@ -18,8 +18,8 @@ public class Login {
     @Autowired
     private UserService UserService;
 
-    // @Autowired
-    // private password password;
+    @Autowired
+    private Password password;
 
     // @ModelAttribute
 
