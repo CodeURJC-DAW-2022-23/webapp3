@@ -17,41 +17,8 @@
 <body>
 
 <!-- BEGIN | Header -->
-<header class="ht-header">
-	<div class="container">
-		<nav class="navbar navbar-default navbar-custom">
-				<!-- Brand and toggle get grouped for better mobile display -->
-				<div class="navbar-header logo">
-				    <div class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-					    <span class="sr-only">MovieFrame</span>
-					    <div id="nav-icon1">
-							<span></span>
-							<span></span>
-							<span></span>
-						</div>
-				    </div>
-				    <img class="logo" src="images/logoMF.png" alt="" width="80" height="58">
-			    </div>
-				<!-- Collect the nav links, forms, and other content for toggling -->
-				<div class="collapse navbar-collapse flex-parent" id="bs-example-navbar-collapse-1">
-					<ul class="nav navbar-nav flex-child-menu menu-left">
-						<li class="hidden">
-							<a href="#page-top"></a>
-						</li>
-					</ul>
-					<ul class="nav navbar-nav flex-child-menu menu-right">
-						<li class="btn btn-default dropdown-toggle lv1"><a href="/">Home</a></li>
-					</ul>
-				</div>
-			<!-- /.navbar-collapse -->
-	    </nav>
-	    
-	    <!-- top search form -->
-	    
-	</div>
-</header>
+<div id="header-container"></div>
 <!-- END | Header -->
-
 <div class="hero user-hero">
 	<div class="container">
 		<div class="row">
@@ -124,6 +91,7 @@
 
 <script>
 	$(document).ready(function () {
+		$("#header-container").load("header.html");
 		$("#footer-container").load("footer.html");
 	});
 </script>
