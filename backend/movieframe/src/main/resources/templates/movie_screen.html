@@ -110,52 +110,12 @@
 end of signup form popup-->
 
 <!-- BEGIN | Header -->
-<header class="ht-header">
-	<div class="container">
-		<nav class="navbar navbar-default navbar-custom">
-				<!-- Brand and toggle get grouped for better mobile display -->
-				<!--<div class="navbar-header logo">-->
-				    <div class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-					    <span class="sr-only">MovieFrame</span>
-					    <div id="nav-icon1">
-							<span></span>
-							<span></span>
-							<span></span>
-						</div>
-				    </div>
-				    <img class="logo" src="images/logoMF.png" alt="" width="80" height="58">
-			    <!--</div>-->
-				<!-- Collect the nav links, forms, and other content for toggling -->
-				<div class="collapse navbar-collapse flex-parent" id="bs-example-navbar-collapse-1">
-					<ul class="nav navbar-nav flex-child-menu menu-left">
-						<!--<li class="hidden">
-							<a href="#page-top"></a>
-						</li>-->
-		
-						<li class="dropdown first">
-							<a class="btn btn-default dropdown-toggle lv1"s href="/"> Home </a>
-						</li>
-					
-					</ul>
-					<ul class="nav navbar-nav flex-child-menu menu-right">
-						
-						<li class="loginLink"><a href="#">LOG In</a></li>
-						<li class="btn signupLink"><a href="#">sign up</a></li>
-					</ul>
-				</div>
-			<!-- /.navbar-collapse -->
-	    </nav>
-	    
-	    <!-- top search form -->
-	    
-	</div>
-</header>
+<div id="header-container"></div>
 <!-- END | Header -->
-<li class="active"><a href="#">Home</a></li>
 <div class="hero mv-single-hero"></div>
 
 <div class="page-single movie-single movie_single">
-	<div class="container">
+	<div class="container" style="margin-top: 120px;">
 		<div class="row ipad-width2">
 			<div class="col-md-4 col-sm-12 col-xs-12">
 				<div class="movie-img sticky-sb">
@@ -291,7 +251,7 @@ end of signup form popup-->
 						            	<div class="col-md-4 col-xs-12 col-sm-12">
 						            		<div class="sb-it">
 						            			<h6>Director: </h6>
-						            			<p><a href="#">Joss Whedon</a></p>
+						            			<p><a href="/director">Joss Whedon</a></p>
 						            		</div>
 						            		<div class="sb-it">
 						            			<h6>Stars: </h6>
@@ -695,24 +655,20 @@ end of signup form popup-->
 	</div>
 </div>
 <!-- footer section-->
-<footer class="ht-footer">
-	<div class="container">
-		<div class="flex-parent-ft">
-			<div class="flex-child-ft item1">
-				<p>Desarrollo de aplicaciones web<br></p>
-				<p>Maria Amparo Alami <br> Cristobal Justo Rustarazo <br> Cassiel Seth Mayorca Heirisman <br>
-				Javier García Seller <br> Shadith Perez Rivera </p>
-			</div>		
-		</div>
-	</div>
-	
-</footer>
+<div id="footer-container"></div>
 <!-- end of footer section-->
-      
-        <script src="js/jquery.js"></script>
-        <script src="js/plugins.js"></script>
-        <script src="js/plugins2.js"></script>
-        <script src="js/custom.js"></script>
 
-    </body>
+<script src="js/jquery.js"></script>
+<script src="js/plugins.js"></script>
+<script src="js/plugins2.js"></script>
+<script src="js/custom.js"></script>
+
+<script>
+	$(document).ready(function () {
+		$("#header-container").load("header.html");
+		$("#footer-container").load("footer.html");
+	});
+</script>
+</body>
+
 </html>
