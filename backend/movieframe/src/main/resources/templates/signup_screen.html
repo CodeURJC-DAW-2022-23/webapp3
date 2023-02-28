@@ -19,6 +19,7 @@
 <!-- BEGIN | Header -->
 <div id="header-container"></div>
 <!-- END | Header -->
+
 <div class="hero user-hero">
 	<div class="container">
 		<div class="row">
@@ -41,39 +42,43 @@
 				</div>
 			</div>
 			<div class="col-md-9 col-sm-12 col-xs-12">
-				<div class="form-style-1 user-pro" action="#">
-					<form action="#" class="user">
+				<div class="form-style-1 user-pro">
+					<form th:action="@{/sign_up}" th:object="${user}" method="post">
 						<div class="row">
 							<div class="col-md-6 form-it">
 								<label>Username</label>
-								<input type="text" placeholder="edwardkennedy">
+								<input type="text" th:field="*{user.username}" placeholder="edwardkennedy">
+								<div class="error-message" th:if="${#fields.hasErrors('username')}">
+									<p th:errors="*{username}">Error message goes here</p>
+								</div>
 							</div>
 							<div class="col-md-6 form-it">
-								<label>Email Address</label>
-								<input type="text" placeholder="edward@kennedy.com">
+								<label for="email">Email Address</label>
+								<input type="email" class="form-control" id="email" name="email" th:field="${user.email}" required>
+								<div class="invalid-feedback" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-md-6 form-it">
 								<label>First Name</label>
-								<input type="text" placeholder="Edward ">
+								<input type="text" th:field="*{firstName}" placeholder="Edward ">
 							</div>
 							<div class="col-md-6 form-it">
 								<label>Last Name</label>
-								<input type="text" placeholder="Kennedy">
+								<input type="text" th:field="*{lastName}" placeholder="Kennedy">
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-md-6 form-it">
 								<label>Password</label>
-								<input type="text" placeholder="***************">
+								<input type="password" th:field="*{password}" placeholder="***************">
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-md-2">
 								<input class="submit" type="submit" value="register">
 							</div>
-						</div>	
+						</div>
 					</form>
 				</div>
 			</div>
