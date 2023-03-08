@@ -15,10 +15,7 @@ import es.webapp3.movieframe.service.UserService;
 @Controller
 public class Login {
 
-    @Autowired
-    private UserService UserService;
-
-   // @Autowired
+    // @Autowired
     // private Password password;
 
     // @ModelAttribute
