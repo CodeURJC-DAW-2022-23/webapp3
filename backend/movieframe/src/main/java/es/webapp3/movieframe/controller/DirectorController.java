@@ -19,9 +19,9 @@ public class DirectorController {
     @Autowired
     private DirectorRepository directorRepository;
 
-    @GetMapping("")
-    public List<Director> getAllDirectors() {
-        return directorRepository.findByName();
+    @GetMapping("/{nombre}")
+    public Director getDirectorsByNombre(@PathVariable String nombre) {
+        return directorRepository.findByName(nombre);
     }
 
     @GetMapping("/{id}")
