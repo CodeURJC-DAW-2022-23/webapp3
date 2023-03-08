@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js">
+<html lang="en" class="no-js" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="UTF-8">
          <!-- Mobile specific meta-->
@@ -15,41 +15,8 @@
     </head>
 
 <body>
-
 <!-- BEGIN | Header -->
-<header class="ht-header">
-	<div class="container">
-		<nav class="navbar navbar-default navbar-custom">
-				<!-- Brand and toggle get grouped for better mobile display -->
-				<div class="navbar-header logo">
-				    <div class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-					    <span class="sr-only">MovieFrame</span>
-					    <div id="nav-icon1">
-							<span></span>
-							<span></span>
-							<span></span>
-						</div>
-				    </div>
-				    <img class="logo" src="images/logoMF.png" alt="" width="80" height="58">
-			    </div>
-				<!-- Collect the nav links, forms, and other content for toggling -->
-				<div class="collapse navbar-collapse flex-parent" id="bs-example-navbar-collapse-1">
-					<ul class="nav navbar-nav flex-child-menu menu-left">
-						<li class="hidden">
-							<a href="#page-top"></a>
-						</li>
-					</ul>
-					<ul class="nav navbar-nav flex-child-menu menu-right">
-						<li class="btn btn-default dropdown-toggle lv1"><a href="/">Home</a></li>
-					</ul>
-				</div>
-			<!-- /.navbar-collapse -->
-	    </nav>
-	    
-	    <!-- top search form -->
-	    
-	</div>
-</header>
+<div id="header-container"></div>
 <!-- END | Header -->
 
 <div class="hero user-hero">
@@ -67,46 +34,57 @@
 		<div class="row ipad-width">
 			<div class="col-md-3 col-sm-12 col-xs-12">
 				<div class="user-information">
-					<div class="user-img">
-						<a href="#"><img src="images/uploads/user-img.png" alt=""><br></a>
-						<a href="#" class="redbtn">Set avatar</a>
+					<div class="user-img" placeholder="Set avatar">
+						<img src="/user/{{user.id}}/image">
+							
+						</div>
 					</div>
 				</div>
 			</div>
 			<div class="col-md-9 col-sm-12 col-xs-12">
-				<div class="form-style-1 user-pro" action="#">
-					<form action="#" class="user">
+				<div class="form-style-1 user-pro">
+					<form th:action="@{/sign_up}" th:object="${user}" method="post">
+
 						<div class="row">
 							<div class="col-md-6 form-it">
 								<label>Username</label>
-								<input type="text" placeholder="edwardkennedy">
+								<input type="text" name="username" th:field="$*{username}" placeholder="edwardkennedy">
+								<div class="error-message" th:if="${#fields.hasErrors('username')}">
+									<p th:errors="*{username}"></p>
+								</div>
 							</div>
 							<div class="col-md-6 form-it">
-								<label>Email Address</label>
-								<input type="text" placeholder="edward@kennedy.com">
+								<label for="email">Email Address</label>
+								<input type="email" name="email" th:field="$*{email}" required>
+								<div class="error-message" th:if="${#fields.hasErrors('email')}">
+									<p th:errors="*{email}"></p>
+								</div>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-md-6 form-it">
 								<label>First Name</label>
-								<input type="text" placeholder="Edward ">
+								<input type="text" name="firstName" th:field="$*{firstName}" placeholder="Edward ">
 							</div>
 							<div class="col-md-6 form-it">
 								<label>Last Name</label>
-								<input type="text" placeholder="Kennedy">
+								<input type="text" name="lastName" th:field="$*{lastName}" placeholder="Kennedy">
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-md-6 form-it">
 								<label>Password</label>
-								<input type="text" placeholder="***************">
+								<input type="password" name="password" th:field="$*{password}" placeholder="***************">
 							</div>
 						</div>
+						<form action="/user/new" method="post" enctype="multipart/form-data" class="user">
+							<input class="redbtn" type='file' name='image' accept=".jpg, .jpeg">
+						</form>
 						<div class="row">
 							<div class="col-md-2">
 								<input class="submit" type="submit" value="register">
 							</div>
-						</div>	
+						</div>
 					</form>
 				</div>
 			</div>
@@ -114,26 +92,20 @@
 	</div>
 </div>
 <!-- footer section-->
-<footer class="ht-footer">
-	<div class="container">
-		<div class="flex-parent-ft">
-			<div class="flex-child-ft item1">
-				<p>Desarrollo de aplicaciones web<br></p>
-				<p>Maria Amparo Alami <br> Cristobal Justo Rustarazo <br> Cassiel Seth Mayorca Heirisman <br>
-				Javier García Seller <br> Shadith Perez Rivera </p>
-			</div>		
-		</div>
-	</div>
-	
-</footer>
+<div id="footer-container"></div>
 <!-- end of footer section-->
 
-        <script src="js/jquery.js"></script>
-        <script src="js/plugins.js"></script>
-        <script src="js/plugins2.js"></script>
-        <script src="js/custom.js"></script>
+<script src="js/jquery.js"></script>
+<script src="js/plugins.js"></script>
+<script src="js/plugins2.js"></script>
+<script src="js/custom.js"></script>
 
+<script>
+	$(document).ready(function () {
+		$("#header-container").load("header.html");
+		$("#footer-container").load("footer.html");
+	});
+</script>
 </body>
 
-<!-- userprofile14:04-->
 </html>

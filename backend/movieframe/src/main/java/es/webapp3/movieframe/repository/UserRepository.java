@@ -1,5 +1,6 @@
 package es.webapp3.movieframe.repository;
 
+
 import org.springframework.stereotype.Repository;
 
 import es.webapp3.movieframe.model.User;
@@ -16,3 +17,4 @@ public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findByEmail(String email);
 
 }
+

@@ -1,88 +1,78 @@
 package es.webapp3.movieframe.model;
 
-import org.springframework.stereotype.Component;
-import org.springframework.web.context.annotation.SessionScope;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
-@Component
-@SessionScope
-@Table(name = "app_user")
-public class User {
+public class User implements Serializable{
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
     private String username;
     private String password;
     private String name;
-    private String lastName;
-
     private String email;
-    private String avatar;
 
-    protected User() {
-    }// constructor for the database
+    @OneToMany(cascade=CascadeType.ALL)
+    private List<Review> reviews = new ArrayList<>();
 
-    public User(String username, String password, String name, String lastname, String email, String avatar) {
-        this.username = username;
-        this.password = password;
-        this.name = name;
-        this.lastName = lastname;
-        this.email = email;
-        this.avatar = avatar;
+    public User(){}
+
+    public User(String username,String password,String name,String mail){
+        super();
+        this.username=username;
+        this.password=password;
+        this.name=name;
+        this.email=mail;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setId(Long id){
+        this.id=id;
     }
 
-    public String getUsername() {
+    public void setUsername(String username){
+        this.username=username;
+    }
+
+    public void setPassword(String password){
+        this.password=password;
+    }
+
+    public void setName(String name){
+        this.name=name;
+    }
+
+    public void setEmail(String mail){
+        this.email=mail;
+    }
+
+    public Long getId(){
+        return id;
+    }
+
+    public String getUsername(){
         return username;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getPassword() {
+    public String getPassword(){
         return password;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getName() {
+    public String getName(){
         return name;
     }
 
-    public void setLastname(String lastname) {
-        this.lastName = lastname;
-    }
-
-    public String getLastname() {
-        return lastName;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getEmail() {
+    public String getEmail(){
         return email;
     }
-
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
+    
+    public List<Review> getReviews(){
+        return reviews;
     }
-
-    public String getAvatar() {
-        return avatar;
-    }
+    
 }
