@@ -1,13 +1,20 @@
 package es.webapp3.movieframe.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+
+import org.springframework.stereotype.Repository;
 
 import es.webapp3.movieframe.model.User;
 
-public interface UserRepository extends JpaRepository<User,Long>{
+import org.springframework.data.jpa.repository.JpaRepository;
 
-    /*@Query(value = "SELECT u.name, u.lastname, u.email, r.description FROM User u JOIN Review r ON r.name = u.name WHERE u.name = :name", 
-            nativeQuery = true)
-    User findReviewByAuthorQuery(Long id);*/
+import java.util.Optional;
+
+@Repository
+public interface UserRepository extends JpaRepository<User, Long> {
+
+    Optional<User> findByUsername(String username);
+
+    Optional<User> findByEmail(String email);
+
 }
- 
+
