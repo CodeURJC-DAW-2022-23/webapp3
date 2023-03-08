@@ -12,6 +12,11 @@
         <!-- CSS files -->
         <link rel="stylesheet" href="css/plugins.css">
         <link rel="stylesheet" href="css/style.css">
+
+		<script src="js/jquery.js"></script>
+		
+		<script src="Chart.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     </head>
 
     <body>
@@ -30,221 +35,67 @@
 		<div id="header-container"></div>
 		<!-- END | Header -->
 
-<div class="slider movie-items">
+<div class="slider movie-items" action="home" method="get">
+	{{#movieframe}}
 	<div class="container">
 		<div class="row">
-	    	<div  class="slick-multiItemSlider">
 
+	    	<div  class="slick-multiItemSlider" >
+	    		<div class="movie-item" action="list_movies">
 
-				{{#movies}}
-				<div class="movie-item">
-					
-					<div class="mv-img">
-					{{#image}}
-						<img src="/movies/{{id}}/image" alt="" width="285" height="437">
-					{{/image}}
-					{{^image}}
-					<img src="/images/no_image.png">
-					{{/image}}
-				</div>
-					<div class="title-in">
-						<div class="cate">
-							<span class="blue">{{gender}}</span>
-						</div>
-						<h6><a href="/movie/{{title}}">{{title}}</a></h6>
-						<p><i class="ion-android-star"></i><span>7.4</span> /10</p>
-					</div>
-				
-			</div>
-				{{/movies}}
-	    		<!--<div class="movie-item">
-					
 						<div class="mv-img">
-						<img src="images/uploads/slider1.jpg" alt="" width="285" height="437">
+						    <img alt="" width="285" height="437"><a href="/movie/{id}"></a>{{movie_img}}</img>
 						</div>
 						<div class="title-in">
 							<div class="cate">
-								<span class="blue">Sci-fi</span>
+								<span class="blue">{{gender}}</span>
 							</div>
-							<h6><a href="/movie">Interstellar</a></h6>
-							<p><i class="ion-android-star"></i><span>7.4</span> /10</p>
+							<h6><a href="/movie/{id}">{{title}}</a></h6>
+							<p><i class="ion-android-star"></i><span>{{movie_votes}}</span> /5</p>
 						</div>
-					
 	    		</div>
-				<div class="movie-item">
-	    			<div class="mv-img">
-	    				<img src="images/uploads/slider2.jpg" alt="" width="285" height="437">
-	    			</div>
-	    			<div class="title-in">
-	    				<div class="cate">
-	    					<span class="yell">action</span>
-	    				</div>
-	    				<h6><a href="/movie">The revenant</a></h6>
-	    				<p><i class="ion-android-star"></i><span>7.4</span> /10</p>
-	    			</div>
-	    		</div>
-	    		<div class="movie-item">
-	    			<div class="mv-img">
-	    				<img src="images/uploads/slider3.jpg" alt="" width="285" height="437">
-	    			</div>
-	    			<div class="title-in">
-	    				<div class="cate">
-	    					<span class="green">comedy</span>
-	    				</div>
-	    				<h6><a href="/movie">Die hard</a></h6>
-	    				<p><i class="ion-android-star"></i><span>7.4</span> /10</p>
-	    			</div>
-	    		</div>
-	    		<div class="movie-item">
-	    			<div class="mv-img">
-	    				<img src="images/uploads/slider4.jpg" alt="" width="285" height="437">
-	    			</div>
-	    			<div class="title-in">
-	    				<div class="cate">
-	    					<span class="blue">Sci-fi</span> <span class="orange">advanture</span>
-	    				</div>
-	    				<h6><a href="/movie">The walk</a></h6>
-	    				<p><i class="ion-android-star"></i><span>7.4</span> /10</p>
-	    			</div>
-	    		</div>-->
-	    		
-	    		
+
 	    	</div>
 	    </div>
 	</div>
+	{{/movieframe}}
 </div>
 
 <div class="trailers">
+	{{#movieframe}}
 	<div class="container">
 		<div class="row ipad-width">
 			<div class="col-md-12">
 				<div class="title-hd">
-					<h2>TRAILERS</h2>
+					<h2>TRAILER</h2>
 				</div>
 				<div class="videos">
 				 	<div class="slider-for-2 video-ft">
-						{{#movies}}
-							<div>
-								<iframe class="item-video"  data-src={{trailer}}></iframe>
-							</div>
-						{{/movies}}
-					    <!--<div>
-					    	<iframe class="item-video"  data-src="https://www.youtube.com/embed/w0qQkSuWOS8"></iframe>
-					    </div>
-					    <div>
-					    	<iframe class="item-video"  data-src="https://www.youtube.com/embed/44LdLqgOpjo"></iframe>
-					    </div>
-					    <div>
-					    	<iframe class="item-video"  data-src="https://www.youtube.com/embed/gbug3zTm3Ws"></iframe>
-					    </div>
-					    <div>
-					    	<iframe class="item-video"  data-src="https://www.youtube.com/embed/e3Nl_TCQXuw"></iframe>
-					    </div>
-					    <div>
-					    	<iframe class="item-video"  data-src="https://www.youtube.com/embed/NxhEZG0k9_w"></iframe>
-					    </div>	-->
+
+                        <div>
+					    	<iframe class="item-video">{{trailer}}</iframe>
+					    </div>	
 					</div>
-					<div class="slider-nav-2 thumb-ft">
-						{{#movies}}
-							<div class="item">
-								<div class="trailer-img">
-									{{#image}}
-										<img src="/movies/{{id}}/imageTrailer" alt="photo by Barn Images" width="4096" height="2737">
-									{{/image}}
-									{{^image}}
-										<img src="/images/no_image.png"alt="photo by Barn Images" width="4096" height="2737">
-									{{/image}}
-								</div>
-								<div class="trailer-infor">
-									<h4 class="desc">{{title}}</h4>
-									<p>2:30</p>
-								</div>
-							</div>
-						{{/movies}}	
-						<!--<div class="item">
-							<div class="trailer-img">
-								<img src="images/uploads/trailer2.jpg"  alt="photo by Barn Images" width="350" height="200">
-							</div>
-							<div class="trailer-infor">
-	                        	<h4 class="desc">Oblivion: Official Teaser Trailer</h4>
-	                        	<p>2:37</p>
-	                        </div>
-						</div>
-						<div class="item">
-							<div class="trailer-img">
-								<img src="images/uploads/trailer6.jpg" alt="photo by Joshua Earle">
-							</div>
-							<div class="trailer-infor">
-	                        	<h4 class="desc">Exclusive Interview:  Skull Island</h4>
-	                        	<p>2:44</p>
-	                        </div>
-						</div>
-						<div class="item">
-							<div class="trailer-img">
-								<img src="images/uploads/trailer3.png" alt="photo by Alexander Dimitrov" width="100" height="56">
-							</div>
-							<div class="trailer-infor">
-	                        	<h4 class="desc">Logan: Director James Mangold Interview</h4>	
-	                        	<p>2:43</p>
-	                        </div>
-						</div>
-						<div class="item">
-							<div class="trailer-img">
-								<img src="images/uploads/trailer4.png"  alt="photo by Wojciech Szaturski" width="100" height="56">
-							</div>
-							<div class="trailer-infor">
-	                        	<h4 class="desc">Beauty and the Beast: Official Teaser Trailer 2</h4>	
-	                        	<p>2: 32</p>
-	                        </div>	
-						</div>
-						<div class="item">
-							<div class="trailer-img">
-								<img src="images/uploads/trailer5.jpg"  alt="photo by Wojciech Szaturski" width="360" height="189">
-							</div>
-							<div class="trailer-infor">
-	                        	<h4 class="desc">Fast&Furious 8</h4>	
-	                        	<p>3:11</p>
-	                        </div>	
-						</div>-->
-					
-					</div>
+
 				</div>   
 			</div>
 		</div>
 	</div>
+	{{/movieframe}}
 </div>
-
-		<!--end of latest new v1 section-->
-		<style>
-			.graph-lightbox {
-				display: block;
-				margin: 20px auto;
-			}
-		</style>
-		<div class="trailers">
-			<div class="container">
-				<div class="row ipad-width">
-					<div class="col-md-12">
-						<div class="title-hd">
-							<h2>Graphs</h2>
-						</div>
-						<a class="graph-lightbox">
-							<img src="images/graph1.jpg" width="4096" height="2737">
-						</a>
-						<div class="title-hd">
-							<h4>Grafico por millon de espectadores el primer dia</h4>
-						</div>
-						<a class="graph-lightbox">
-							<img src="images/graph2.jpg" width="4096" height="2737">
-						</a>
-						<div class="title-hd">
-							<h4>Grafico por valoracion media de los usuarios</h4>
-						</div>
-					</div>
-				</div>
+<!--end of latest new v1 section-->
+<style>
+	.graph-lightbox {
+		display: block;
+		margin: 20px auto;
+	}
+</style>
+            <div>
+				<canvas id="myChart" width="400" height="150"></canvas>
 			</div>
-		</div>
-		<!-- footer section-->
+				
+
+<!-- footer section-->
 		<div id="footer-container"></div>
 		<!-- end of footer section-->
 		
@@ -260,5 +111,26 @@
 			});
 		</script>
 	</body>
-		
+<script>
+	const ctx = document.getElementById('myChart');
+  
+	new Chart(ctx, {
+	  type: 'bar',
+	  data: {
+		labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+		datasets: [{
+		  label: 'Graph',
+		  data: [12, 19, 3, 5, 2, 3],
+		  borderWidth: 1
+		}]
+	  },
+	  options: {
+		scales: {
+		  y: {
+			beginAtZero: true
+		  }
+		}
+	  }
+	});
+  </script>
 </html>
