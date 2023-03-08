@@ -31,41 +31,9 @@
 <!--end of preloading-->
 
 
-<!-- BEGIN | Header -->
-<header class="ht-header">
-	<div class="container">
-		<nav class="navbar navbar-default navbar-custom">
-				<!-- Brand and toggle get grouped for better mobile display -->
-				<div class="navbar-header logo">
-				    <div class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-					    <span class="sr-only">Toggle navigation</span>
-					    <div id="nav-icon1">
-							<span></span>
-							<span></span>
-							<span></span>
-						</div>
-				    </div>
-				    <img class="logo" src="/images/logoMF.png" alt="" width="119" height="58">
-			    </div>
-				<!-- Collect the nav links, forms, and other content for toggling -->
-				<div class="collapse navbar-collapse flex-parent" id="bs-example-navbar-collapse-1">
-					
-					<ul class="nav navbar-nav flex-child-menu menu-right">
-					{{#user}}<!--if already logged-->
-					    <li class="btn btn-default dropdown-toggle lv1" id="show_user_reviews"><a href="/reviews/{user}">reviews</a></li>
-						<!--if administrator logged-->
-						<li class="btn btn-default dropdown-toggle lv1" id="show_reviews"><a href="/reviews/">reviews</a></li>
-					{{/user}}
-					{{^user}}<!--if didn´t log yet-->
-						<li class="btn btn-default dropdown-toggle lv1"><a href="/log_in">log in</a></li>
-						<li class="btn btn-default dropdown-toggle lv1"><a href="/sign_up">sign up</a></li>
-					{{/user}}
-					</ul>
-				</div>
-			<!-- /.navbar-collapse -->
-	    </nav>	    
-</header>
-<!-- END | Header -->
+		<!-- BEGIN | Header -->
+		<div id="header-container"></div>
+		<!-- END | Header -->
 
 <div class="slider movie-items" action="home" method="get">
 	{{#movieframe}}
@@ -115,7 +83,6 @@
 	</div>
 	{{/movieframe}}
 </div>
-
 <!--end of latest new v1 section-->
 <style>
 	.graph-lightbox {
@@ -129,25 +96,21 @@
 				
 
 <!-- footer section-->
-<footer class="ht-footer">
-	<div class="container">
-		<div class="flex-parent-ft">
-			<div class="flex-child-ft item1">
-				<p>Desarrollo de aplicaciones web<br></p>
-				<p>Maria Amparo Alami <br> Cristobal Justo Rustarazo <br> Cassiel Seth Mayorca Heirisman <br>
-				Javier García Seller <br> Shadith Perez Rivera </p>
-			</div>		
-		</div>
-	</div>
-	
-</footer>
-<!-- end of footer section-->
-
-        
-        <script src="js/plugins.js"></script>
-        <script src="js/plugins2.js"></script>
-        <script src="js/custom.js"></script>
-</body>
+		<div id="footer-container"></div>
+		<!-- end of footer section-->
+		
+		<script src="js/jquery.js"></script>
+		<script src="js/plugins.js"></script>
+		<script src="js/plugins2.js"></script>
+		<script src="js/custom.js"></script>
+		
+		<script>
+			$(document).ready(function () {
+				$("#header-container").load("header.html");
+				$("#footer-container").load("footer.html");
+			});
+		</script>
+	</body>
 <script>
 	const ctx = document.getElementById('myChart');
   

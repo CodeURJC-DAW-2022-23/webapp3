@@ -205,25 +205,19 @@
 	</div>
 </div>
 <!-- footer section-->
-<footer class="ht-footer">
-	<div class="container">
-		<div class="flex-parent-ft">
-			<div class="flex-child-ft item1">
-				<p>Desarrollo de aplicaciones web<br></p>
-				<p>Maria Amparo Alami <br> Cristobal Justo Rustarazo <br> Cassiel Seth Mayorca Heirisman <br>
-				Javier García Seller <br> Shadith Perez Rivera </p>
-			</div>		
-		</div>
-	</div>
-	
-</footer>
+<div id="footer-container"></div>
 <!-- end of footer section-->
 
-    <script src="js/jquery.js"></script>
-    <script src="js/plugins.js"></script>
-    <script src="js/plugins2.js"></script>
-    <script src="js/custom.js"></script>
+<script src="js/jquery.js"></script>
+<script src="js/plugins.js"></script>
+<script src="js/plugins2.js"></script>
+<script src="js/custom.js"></script>
 
+<script>
+	$(document).ready(function () {
+		$("#footer-container").load("footer.html");
+	});
+</script>
 </body>
 
 </html>

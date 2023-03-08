@@ -132,6 +132,7 @@
 						            	<div class="col-md-4 col-xs-12 col-sm-12">
 						            		<!--<div class="sb-it">
 						            			<h6>Director: </h6>
+
 						            			<p>{{movie.director}}</p>
 						            		</div>
 						            		<div class="sb-it">
@@ -529,18 +530,7 @@
 	{{/movie}}
 </div>
 <!-- footer section-->
-<footer class="ht-footer">
-	<div class="container">
-		<div class="flex-parent-ft">
-			<div class="flex-child-ft item1">
-				<p>Desarrollo de aplicaciones web<br></p>
-				<p>Maria Amparo Alami <br> Cristobal Justo Rustarazo <br> Cassiel Seth Mayorca Heirisman <br>
-				Javier García Seller <br> Shadith Perez Rivera </p>
-			</div>		
-		</div>
-	</div>
-	
-</footer>
+<div id="footer-container"></div>
 <!-- end of footer section-->
       
         <script src="../js/jquery.js"></script>
@@ -548,5 +538,12 @@
         <script src="../js/plugins2.js"></script>
         <script src="../js/custom.js"></script>
 
-    </body>
+<script>
+	$(document).ready(function () {
+		$("#header-container").load("header.html");
+		$("#footer-container").load("footer.html");
+	});
+</script>
+</body>
+
 </html>
