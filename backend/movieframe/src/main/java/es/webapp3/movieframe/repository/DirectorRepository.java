@@ -16,4 +16,6 @@ public interface DirectorRepository extends JpaRepository<Director, Long> {
 
     List<Director> findByScoreGreaterThanEqual(String score);
 
+    List<Director> findAll();
+
 }
