@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js">
+<html lang="en" class="no-js" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="UTF-8">
          <!-- Mobile specific meta-->
@@ -15,7 +15,6 @@
     </head>
 
 <body>
-
 <!-- BEGIN | Header -->
 <div id="header-container"></div>
 <!-- END | Header -->
@@ -47,31 +46,33 @@
 						<div class="row">
 							<div class="col-md-6 form-it">
 								<label>Username</label>
-								<input type="text" th:field="*{user.username}" placeholder="edwardkennedy">
+								<input type="text" name="username" th:field="$*{username}" placeholder="edwardkennedy">
 								<div class="error-message" th:if="${#fields.hasErrors('username')}">
-									<p th:errors="*{username}">Error message goes here</p>
+									<p th:errors="*{username}"></p>
 								</div>
 							</div>
 							<div class="col-md-6 form-it">
 								<label for="email">Email Address</label>
-								<input type="email" class="form-control" id="email" name="email" th:field="${user.email}" required>
-								<div class="invalid-feedback" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+								<input type="email" name="email" th:field="$*{email}" required>
+								<div class="error-message" th:if="${#fields.hasErrors('email')}">
+									<p th:errors="*{email}"></p>
+								</div>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-md-6 form-it">
 								<label>First Name</label>
-								<input type="text" th:field="*{firstName}" placeholder="Edward ">
+								<input type="text" name="firstName" th:field="$*{firstName}" placeholder="Edward ">
 							</div>
 							<div class="col-md-6 form-it">
 								<label>Last Name</label>
-								<input type="text" th:field="*{lastName}" placeholder="Kennedy">
+								<input type="text" name="lastName" th:field="$*{lastName}" placeholder="Kennedy">
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-md-6 form-it">
 								<label>Password</label>
-								<input type="password" th:field="*{password}" placeholder="***************">
+								<input type="password" name="password" th:field="$*{password}" placeholder="***************">
 							</div>
 						</div>
 						<div class="row">

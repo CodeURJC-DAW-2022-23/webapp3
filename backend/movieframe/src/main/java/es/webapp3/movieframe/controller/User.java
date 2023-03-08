@@ -23,21 +23,21 @@ public class User {
     private long id;
     private String username;
     private String password;
-    private String name;
+    private String firstName;
     private String lastName;
     @NotBlank(message = "Email is required")
-    @Email(message = "Invalid email address")
+    @Email(message = "Email is not valid")
     private String email;
     private String avatar;
 
     protected User() {
     }// constructor for the database
 
-    public User(String username, String password, String name, String lastname, String email, String avatar) {
+    public User(String username, String password, String firstName, String lastName, String email, String avatar) {
         this.username = username;
         this.password = password;
-        this.name = name;
-        this.lastName = lastname;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.email = email;
         this.avatar = avatar;
     }
@@ -58,12 +58,12 @@ public class User {
         return password;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setfirstName(String name) {
+        this.firstName = name;
     }
 
-    public String getName() {
-        return name;
+    public String getfirstName() {
+        return firstName;
     }
 
     public void setLastname(String lastname) {
