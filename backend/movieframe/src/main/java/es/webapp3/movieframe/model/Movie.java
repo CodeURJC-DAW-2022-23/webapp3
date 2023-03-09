@@ -1,10 +1,16 @@
 package es.webapp3.movieframe.model;
 
 import java.io.Serializable;
+import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
+import jakarta.persistence.OneToMany;
 
 
 @Entity
@@ -17,15 +23,19 @@ public class Movie implements Serializable{
     private String title;
     private String gender;
     private String movie_description;
-    private String movie_img;
+    private boolean movie_img;
     private int movie_votes;
     private String trailer;
     
+    @Lob
+    private Blob imageFile;
+    
+    @OneToMany
     private List<Review> reviews = new ArrayList<>();
 
     public Movie(){}
 
-    public Movie(String title,String category,String description,String img,int votes,String spoiler){
+    public Movie(String title,String category,String description,int votes,String spoiler){
         super();
         this.movie_description=description;
         this.gender=category;
@@ -47,7 +57,19 @@ public class Movie implements Serializable{
         return movie_description;
     }
 
-    public String getImg(){
+    public Blob getImageFile(){
+        return imageFile;
+    }
+
+    public void setImageFile(Blob image){
+        this.imageFile=image;
+    }
+
+    public void setImage(boolean image){
+        this.movie_img=image;
+    }
+
+    public boolean getImg(){
         return movie_img;
     }
 

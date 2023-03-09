@@ -13,7 +13,7 @@
         <link rel="stylesheet" href="css/plugins.css">
         <link rel="stylesheet" href="css/style.css">
 
-		<script src="js/jquery.js"></script>
+		<script src="js/script.js"></script>
 		
 		<script src="Chart.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -67,25 +67,10 @@
 </header>
 <!-- END | Header -->
 
-<div class="slider movie-items" action="home" method="get">
+<div class="slider movie-items" action="/movies/" method="get">
 	{{#movieframe}}
-	<div class="container">
-		<div class="row">
-	    	<div  class="slick-multiItemSlider" >
-	    		<div class="movie-item" action="list_movies">
-						<div class="mv-img">
-						    <img alt="" width="285" height="437"><a href="/movie/{id}"></a>{{movie_img}}</img>
-						</div>
-						<div class="title-in">
-							<div class="cate">
-								<span class="blue">{{gender}}</span>
-							</div>
-							<h6><a href="/movie/{id}">{{title}}</a></h6>
-							<p><i class="ion-android-star"></i><span>{{movie_votes}}</span> /5</p>
-						</div>
-	    		</div>
-	    	</div>
-	    </div>
+	<div class="container" id="movie_item">
+		
 	</div>
 	{{/movieframe}}
 </div>
@@ -138,31 +123,10 @@
 </footer>
 <!-- end of footer section-->
 
-        
+        <script src="js/jquery.js"></script>
         <script src="js/plugins.js"></script>
         <script src="js/plugins2.js"></script>
         <script src="js/custom.js"></script>
 </body>
-<script>
-	const ctx = document.getElementById('myChart');
-  
-	new Chart(ctx, {
-	  type: 'bar',
-	  data: {
-		labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-		datasets: [{
-		  label: 'Graph',
-		  data: [12, 19, 3, 5, 2, 3],
-		  borderWidth: 1
-		}]
-	  },
-	  options: {
-		scales: {
-		  y: {
-			beginAtZero: true
-		  }
-		}
-	  }
-	});
-  </script>
+
 </html>
