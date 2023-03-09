@@ -50,7 +50,7 @@
 						</li>-->
 		
 						<li class="dropdown first">
-							<a class="btn btn-default dropdown-toggle lv1s" href="/"> Home </a>
+							<a class="btn btn-default dropdown-toggle lv1"s href="/"> Home </a>
 						</li>
 					
 					</ul>
@@ -63,25 +63,26 @@
 	</div>
 </header>
 <!-- END | Header -->
-<li class="active"><a href="/">Home</a></li>
+<li class="active"><a href="#">Home</a></li>
 <div class="hero mv-single-hero"></div>
 
-<div class="page-single movie-single movie_single" action="getMovie" method="get">
-	{{movie}}
+<div class="page-single movie-single movie_single">
 	<div class="container">
 		<div class="row ipad-width2">
 			<div class="col-md-4 col-sm-12 col-xs-12">
 				<div class="movie-img sticky-sb">
-
-					{{movie.movie_img}}
-
+					<img src="/movies/{{movie.id}}/image" alt="">
+					<div class="movie-btn">	
+						<div class="btn-transform transform-vertical red">
+							<div><a href="#" class="item item-1 redbtn"> <i class="ion-play"></i> Watch Trailer</a></div>
+							<div><a href={{movie.trailer}} class="item item-2 redbtn fancybox-media hvr-grow"><i class="ion-play"></i></a></div>
+						</div>
+					</div>
 				</div>
 			</div>
 			<div class="col-md-8 col-sm-12 col-xs-12">
 				<div class="movie-single-ct main-content">
-
-					<h1 class="bd-hd" id="value_title">{{movie.title}}</h1>
-
+					<h1 class="bd-hd">{{movie.title}}</h1>
 					
 					<div class="movie-tabs">
 						<div class="tabs">
@@ -91,60 +92,141 @@
 						        <div id="overview" class="tab active">
 						            <div class="row">
 						            	<div class="col-md-8 col-sm-12 col-xs-12">
-
-						            		<p>{{movie.movie_description}}</p>
-
+						            		<p>{{movie.description}}</p>
+						            		<div class="title-hd-sm">
+												<h4>Photos</h4>
+											</div>
+											<div class="mvsingle-item ov-item">
+												<a class="img-lightbox"  data-fancybox-group="gallery" href="../images/uploads/image11.jpg" ><img src="../images/uploads/image1.jpg" alt=""></a>
+												<a class="img-lightbox"  data-fancybox-group="gallery" href="../images/uploads/image21.jpg" ><img src="../images/uploads/image2.jpg" alt=""></a>
+												<a class="img-lightbox"  data-fancybox-group="gallery" href="../images/uploads/image31.jpg" ><img src="../images/uploads/image3.jpg" alt=""></a>
+												
+											</div>
+											<div class="title-hd-sm">
+												<h4>cast</h4>
+											</div>
+											<!-- movie cast -->
+											<div class="mvcast-item">											
+												<div class="cast-it">
+													<ul>
+														{{#movie.actors}}
+														<li>{{.}}</li>
+														{{/movie.actors}}
+													</ul>
+												</div>
+												<!--<div class="cast-it">
+													<div class="cast-left">
+														<img src="../images/uploads/cast2.jpg" alt="">
+														<p>Chris Hemsworth</p>
+													</div>
+													<p>...  Thor</p>
+												</div>
+												<div class="cast-it">
+													<div class="cast-left">
+														<img src="../images/uploads/cast3.jpg" alt="">
+														<p>Mark Ruffalo</p>
+													</div>
+													<p>...  Bruce Banner/ Hulk</p>
+												</div>
+												<div class="cast-it">
+													<div class="cast-left">
+														<img src="../images/uploads/cast4.jpg" alt="">
+														<p>Chris Evans</p>
+													</div>
+													<p>...  Steve Rogers/ Captain America</p>
+												</div>
+												<div class="cast-it">
+													<div class="cast-left">
+														<img src="../images/uploads/cast5.jpg" alt="">
+														<p>Scarlett Johansson</p>
+													</div>
+													<p>...  Natasha Romanoff/ Black Widow</p>
+												</div>
+												<div class="cast-it">
+													<div class="cast-left">
+														<img src="../images/uploads/cast6.jpg" alt="">
+														<p>Jeremy Renner</p>
+													</div>
+													<p>...  Clint Barton/ Hawkeye</p>
+												</div>
+												<div class="cast-it">
+													<div class="cast-left">
+														<img src="../images/uploads/cast7.jpg" alt="">
+														<p>James Spader</p>
+													</div>
+													<p>...  Ultron</p>
+												</div>
+												<div class="cast-it">
+													<div class="cast-left">
+														<img src="../images/uploads/cast9.jpg" alt="">
+														<p>Don Cheadle</p>
+													</div>
+													<p>...  James Rhodes/ War Machine</p>
+												</div>-->
+											</div>
                                             <!-- movie user review -->
                                             <div class="mv-user-review-item">
-                                                 
-                                                <form action="saveReview" method="post">
+
+                                                <form>
                                                     <p class="clasificacion">
-														<input id="value_radio" type="radio" name="rating" value="5">
-														<label for="radio1">★</label>
-														<input id="value_radio" type="radio" name="rating" value="4">
-														<label for="radio2">★</label>
-														<input id="value_radio" type="radio" name="rating" value="3">
-														<label for="radio3">★</label>
-														<input id="value_radio" type="radio" name="rating" value="2">
-														<label for="radio4">★</label>
-														<input id="value_radio" type="radio" name="rating" value="1">
-														<label for="radio5">★</label>
-														<input id="value_radio" type="radio" name="rating" value="0">
+                                                      <input id="radio1" type="radio" name="rating" value="5">
+                                                      <label for="radio1">★</label>
+                                                      <input id="radio2" type="radio" name="rating" value="4">
+                                                      <label for="radio2">★</label>
+                                                      <input id="radio3" type="radio" name="rating" value="3">
+                                                      <label for="radio3">★</label>
+                                                      <input id="radio4" type="radio" name="rating" value="2">
+                                                      <label for="radio4">★</label>
+                                                      <input id="radio5" type="radio" name="rating" value="1">
+                                                      <label for="radio5">★</label>
+                                                      <input id="radio0" type="radio" name="rating" value="0">
+                                                      
+                                
                                                     </p>
                                                     <label class=reset for=radio0>reset</label>
                                                     <div id=texto>no calification</div>
-                                                </form>
+                                                  </form>
 
+                                                <p class="time">
+                                                    17/12/2016
+                                                </p>
                                                 <div>
-                                                    <form action="saveReview" method="post">
-                                                        <textarea name="coments" rows="7" cols="40" placeholder="Review description..." id="value_description"></textarea>
+                                                    <form action="#">
+                                                        <textarea name="coments" rows="20" cols="100" placeholder="Review description..."></textarea>
                                                     </form>
                                                 </div>
                                                 <div class="title-hd-sm">
-                                                    <a href="/review/new" class="redbtn" id="write_review">Write Review <i class="ion-ios-arrow-right"></i></a>
+                                                    <a href="#" class="redbtn">Write Review <i class="ion-ios-arrow-right"></i></a>
                                                 </div>
-                                             
-                                                <p id="value_author">{{review.author}}</p>
-												<p>{{review.rating}}</p>
-												<p>{{review.coments}}</p>
                                             </div>
 						            	</div>
 						            	<div class="col-md-4 col-xs-12 col-sm-12">
-						            		<!--<div class="sb-it">
+						            		<div class="sb-it">
 						            			<h6>Director: </h6>
-
-						            			<p>{{movie.director}}</p>
+						            			<p><a href="#">Joss Whedon</a></p>
 						            		</div>
 						            		<div class="sb-it">
 						            			<h6>Stars: </h6>
+						            			<ul>
+													{{#movie.actors}}
 
-						            			<p>{{movie.stars}}</p>
-						            		</div>-->
+													{{/movie.actors}}
+												</ul>
+						            		</div>
 						            		<div class="sb-it">
 						            			<h6>Genres:</h6>
 						            			<p>{{movie.gender}}</p>
-						            		</div>            		
-
+						            		</div>
+						            		<div class="sb-it">
+						            			<h6>Release Date:</h6>
+						            			<p>01/05/2015</p>
+						            		</div>	
+                                            <!--Google map-->
+                                            <div id="map-container-google-2" class="z-depth-1-half map-container" style="height: 500px">
+                                                <iframe src="https://maps.google.com/maps?q=chicago&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0"
+                                                style="border:0" allowfullscreen></iframe>
+                                            </div>
+                                            <!--Google Maps-->            		
 						            	</div>
 						            </div>
                                     
@@ -527,10 +609,20 @@
 			</div>
 		</div>
 	</div>
-	{{/movie}}
 </div>
 <!-- footer section-->
-<div id="footer-container"></div>
+<footer class="ht-footer">
+	<div class="container">
+		<div class="flex-parent-ft">
+			<div class="flex-child-ft item1">
+				<p>Desarrollo de aplicaciones web<br></p>
+				<p>Maria Amparo Alami <br> Cristobal Justo Rustarazo <br> Cassiel Seth Mayorca Heirisman <br>
+				Javier García Seller <br> Shadith Perez Rivera </p>
+			</div>		
+		</div>
+	</div>
+	
+</footer>
 <!-- end of footer section-->
       
         <script src="../js/jquery.js"></script>
@@ -538,12 +630,5 @@
         <script src="../js/plugins2.js"></script>
         <script src="../js/custom.js"></script>
 
-<script>
-	$(document).ready(function () {
-		$("#header-container").load("header.html");
-		$("#footer-container").load("footer.html");
-	});
-</script>
-</body>
-
+    </body>
 </html>
