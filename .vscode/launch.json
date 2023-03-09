@@ -1,14 +1,21 @@
 {
-    "configurations": [
-        {
-            "type": "java",
-            "name": "Spring Boot-MovieframeApplication<movieframe>",
-            "request": "launch",
-            "cwd": "${workspaceFolder}",
-            "mainClass": "es.webapp3.movieframe.MovieframeApplication",
-            "projectName": "movieframe",
-            "args": "",
-            "envFile": "${workspaceFolder}/.env"
-        }
-    ]
+  "configurations": [
+    {
+      "type": "java",
+      "name": "MovieframeApplication",
+      "request": "launch",
+      "mainClass": "es.webapp3.movieframe.MovieframeApplication",
+      "projectName": ""
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-MovieframeApplication<movieframe>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "es.webapp3.movieframe.MovieframeApplication",
+      "projectName": "movieframe",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
 }

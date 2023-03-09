@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-//import javax.persistence.OneToMany;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Director {
@@ -14,23 +14,24 @@ public class Director {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    private String movies;
-    private String gender;
-    private String score;
+    private String movieTitle;
+    private String category;
+    private Double score;
 
     @Column(columnDefinition = "TEXT")
     private String description;
 
-    // @OneToMany(mappedBy = "director")
-    // private List<movie> movies;
+    @PodamExclude
+    @OneToMany(mappedBy = "director")
+    private List<movie> movies;
 
     public Director() {
     }
 
-    public Director(String name, String movies, String gender, String description, String score) {
+    public Director(String name, String movieTitle, String category, Double score, String description) {
         this.name = name;
-        this.movies = movies;
-        this.gender = gender;
+        this.movieTitle = movieTitle;
+        this.category = category;
         this.score = score;
         this.description = description;
     }
@@ -51,20 +52,28 @@ public class Director {
         this.name = name;
     }
 
-    public String getMovies() {
-        return movies;
+    public String getMovieTitle() {
+        return movieTitle;
     }
 
-    public void setMovies(String movies) {
-        this.movies = movies;
+    public void setMovieTitle(String movieTitle) {
+        this.movieTitle = movieTitle;
     }
 
-    public String getGender() {
-        return gender;
+    public String getCategory() {
+        return category;
     }
 
-    public void setGender(String gender) {
-        this.gender = gender;
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public Double getScore() {
+        return score;
+    }
+
+    public void setScore(Double score) {
+        this.score = score;
     }
 
     public String getDescription() {
@@ -75,11 +84,4 @@ public class Director {
         this.description = description;
     }
 
-    public String getScore() {
-        return score;
-    }
-
-    public void setScore(String score) {
-        this.score = score;
-    }
 }

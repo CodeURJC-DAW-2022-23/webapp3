@@ -14,8 +14,28 @@ public class DirectorService {
     @Autowired
     private DirectorRepository directorRepository;
 
-    public List<Director> obtenerTodosLosDirectores() {
+    public List<Director> getAllDirectors() {
         return directorRepository.findAll();
+    }
+
+    public Director getDirectorById(Long id) {
+        return directorRepository.findById(id).orElse(null);
+    }
+
+    public Director getDirectorByName(String name) {
+        return directorRepository.findByName(name);
+    }
+
+    public Director getDirectorByMovieTitle(String movieTitle) {
+        return directorRepository.findByMovie_Title(movieTitle);
+    }
+
+    public List<Director> getDirectorsByCategory(String category) {
+        return directorRepository.findByCategory(category);
+    }
+
+    public List<Director> getDirectorsByScoreGreaterThanEqual(Double score) {
+        return directorRepository.findByScoreGreaterThanEqual(score);
     }
 
 }

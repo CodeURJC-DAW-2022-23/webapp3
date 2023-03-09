@@ -19,41 +19,30 @@ import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
 public class Login {
-
     @Autowired
     private UserService userService;
 
-    User currentUser;
-
-    @ModelAttribute
-    public void addAttributes(Model model, HttpServletRequest request) {
-
-    }
-
-    @RequestMapping("/login_screen")
-    public String login() {
-        return "login_screen";
-    }
-
-    @GetMapping("/login_screen.html")
+    @GetMapping("/login")
     public String login(Model model) {
-        return "login_screen";
-
+        return "login";
     }
 
-    @GetMapping("/register")
-    public String register() {
-        return "register";
-    }
-
-    @PostMapping("/register")
-    public String registerProcess(Model model, User user) throws IOException {
-        ResponseEntity<User> newUser = userService.register(user);
-        if (newUser.getStatusCode().is2xxSuccessful()) {
-            return "redirect:/login";
+    @PostMapping("/login")
+    public String loginUser(@RequestParam String username, @RequestParam String password, HttpSession session,
+            Model model) {
+        User user = userService.authenticateUser(username, password);
+        if (user == null) {
+            model.addAttribute("error", "Nombre de usuario o contraseña incorrectos.");
+            return "login";
         } else {
-            model.addAttribute("error", true);
-            return "register";
+            session.setAttribute("user", user);
+            return "redirect:/home";
         }
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "redirect:/login";
     }
 }

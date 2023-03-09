@@ -13,28 +13,28 @@ import jakarta.annotation.PostConstruct;
 @Service
 public class UserService {
 
-    @Autowired
+	@Autowired
 	private UserRepository usersRepository;
 
 	@PostConstruct
 	public void init() {
-		
-		usersRepository.save(new User("edwardKennedy","edu123456","Edward","edward@kennedy.com"));
-        usersRepository.save(new User("hughjackman","maninthemiddle","Hugh","hugh@jack.com"));
 
-		for(int i=0; i<10; i++) {
-			usersRepository.save(new User("Username"+i, "Password"+i, "Name"+i, "Mail"+i));
+		usersRepository.save(new User("edwardKennedy", "edu123456", "Edward", "edward@kennedy.com"));
+		usersRepository.save(new User("hughjackman", "maninthemiddle", "Hugh", "hugh@jack.com"));
+
+		for (int i = 0; i < 10; i++) {
+			usersRepository.save(new User("Username" + i, "Password" + i, "Name" + i, "Mail" + i));
 		}
-    }
+	}
 
-    private AtomicLong nextId = new AtomicLong(1);
+	private AtomicLong nextId = new AtomicLong(1);
 
-    public List<User> findUsers() {
-        return usersRepository.findAll();
+	public List<User> findUsers() {
+		return usersRepository.findAll();
 	}
 
 	public Optional<User> findUser(Long id) {
-        return usersRepository.findById(id);
+		return usersRepository.findById(id);
 	}
 
 	public void saveUser(User user) {
@@ -42,7 +42,15 @@ public class UserService {
 		long id = nextId.getAndIncrement();
 
 		user.setId(id);
-        usersRepository.save(user);
+		usersRepository.save(user);
 	}
-    
+
+	// Login
+	public User authenticateUser(String username, String password) {
+		User user = userRepository.findByUsername(username);
+		if (user != null && user.isEnabled() && passwordEncoder.matches(password, user.getPassword())) {
+			return user;
+		}
+		return null;
+	}
 }
