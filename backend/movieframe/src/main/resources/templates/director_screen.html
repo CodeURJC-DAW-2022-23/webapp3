@@ -156,7 +156,7 @@ end of signup form popup-->
 			</div>
 			<div class="col-md-8 col-sm-12 col-xs-12">
 				<div class="movie-single-ct main-content">
-					<h1 class="bd-hd">Joss Whedon</h1>
+					<h1 class="bd-hd">{{director.name}}</h1>
 					
 					<div class="movie-tabs">
 						<div class="tabs">
@@ -166,22 +166,7 @@ end of signup form popup-->
 						        <div id="overview" class="tab active">
 						            <div class="row">
 						            	<div class="col-md-8 col-sm-12 col-xs-12">
-						            		<p>Joseph Hill Whedon (/ˈhwiːdən/; born June 23, 1964) is an American filmmaker, composer, and comic book writer. He is the
-											founder of Mutant Enemy Productions, co-founder of Bellwether Pictures, and is best known as the creator of several
-											television series: the supernatural drama Buffy the Vampire Slayer (1997–2003) and its spinoff Angel (1999–2004), the
-											short-lived space Western Firefly (2002), the Internet musical miniseries Dr. Horrible's Sing-Along Blog (2008), the
-											science fiction drama Dollhouse (2009–2010), the Marvel Cinematic Universe series Agents of S.H.I.E.L.D. (2013–2020),
-											and the science fiction drama The Nevers (2021).
-											
-											After beginning his career in sitcoms, Whedon wrote the poorly-received horror comedy film Buffy the Vampire Slayer
-											(1992) – which he later adapted into the acclaimed television series of the same name – co-wrote the Pixar animated film
-											Toy Story (1995), and wrote the science fiction horror film Alien Resurrection (1997). After achieving success as a
-											television showrunner, Whedon returned to film to write and direct the Firefly film continuation Serenity (2005),
-											co-write and produce the horror comedy film The Cabin in the Woods (2012), and write and direct the Shakespeare
-											adaptation Much Ado About Nothing (2012). For the Marvel Cinematic Universe, Whedon wrote and directed the ensemble
-											superhero film The Avengers (2012) and its sequel Avengers: Age of Ultron (2015). He also co-wrote the DC Extended
-											Universe superhero film Justice League (2017), for which he also served as director for re-shoots, replacing Zack Snyder
-											(who retained directorial credit).</p>
+						            		<p>{{director.description}}</p>
 						            		<div class="title-hd-sm">
 												<h4>Photos</h4>
 											</div>
@@ -199,7 +184,7 @@ end of signup form popup-->
 												<div class="cast-it">
 													<div class="cast-left">
 														<img src="images/uploads/buff.jpg" alt="" width="70" height="70">
-														<p><a href="">Buffy the Vampire Slayer</a></p>
+														<p><a href="">{{director.movieTitle}}</a></p>
 													</div>
 													<p>1992</p>
 												</div>
@@ -207,7 +192,7 @@ end of signup form popup-->
 												<div class="cast-it">
 													<div class="cast-left">
 														<img src="images/uploads/toy_story.jpg" alt="" width="70" height="70">
-														<p><a href="">Toy Story</a></p>
+														<p><a href="">{{director.movieTitle}}</a></p>
 													</div>
 													<p>1995</p>
 												</div>
@@ -215,72 +200,25 @@ end of signup form popup-->
 												<div class="cast-it">
 													<div class="cast-left">
 														<img src="images/uploads/avengers.jpg" alt="" width="70" height="70">
-														<p><a href="">The Avengers</a></p>
+														<p><a href="">{{director.movieTitle}}</a></p>
 													</div>
 													<p>2012</p>
 												</div>
 												
-												<div class="cast-it">
-													<div class="cast-left">
-														<img src="images/uploads/firefly.jpg" alt="" width="70" height="70">
-														<p><a href="">Firefly</a></p>
-													</div>
-													<p>2002</p>
-												</div>
-												
-												<div class="cast-it">
-													<div class="cast-left">
-														<img src="images/uploads/serenity.jpg" alt="" width="70" height="70">
-														<p><a href="">Serenity</a></p>
-													</div>
-													<p>2005</p>
-												</div>
-												
-												<div class="cast-it">
-													<div class="cast-left">
-														<img src="images/uploads/cabin.jpg" alt="" width="70" height="70">
-														<p><a href="">The Cabin in the Woods</a></p>
-													</div>
-													<p>2012</p>
-												</div>
-												
-												<div class="cast-it">
-													<div class="cast-left">
-														<img src="images/uploads/avengers2.jpg" alt="" width="70" height="70">
-														<p><a href="">Avengers: Age of Ultron</a></p>
-													</div>
-													<p>2015</p>
-												</div>
-												
-												<div class="cast-it">
-													<div class="cast-left">
-														<img src="images/uploads/justicia.jpg" alt="" width="70" height="70">
-														<p><a href="">Justice League</a></p>
-													</div>
-													<p>2017</p>
-												</div>
 											</div>
 						            	</div>
 						            	<div class="col-md-4 col-xs-12 col-sm-12">
 						            		<div class="sb-it">
 						            			<h6>Name: </h6>
-						            			<p>Joseph Hill Whedon</p>
-						            		</div>
-						            		<div class="sb-it">
-						            			<h6>Born: </h6>
-						            			<p>	23 de junio de 1964 (58 años), New York</p>
-						            		</div>
+						            			<p>{{director.name}}</p>
+						            		</div>						            
 						            		<div class="sb-it">
 						            			<h6>Genre:</h6>
-						            			<p>Action, Sci-Fi, Adventure</p>
-						            		</div>
-						            		<div class="sb-it">
-						            			<h6>Residence:</h6>
-						            			<p>New York</p>
-						            		</div>
+						            			<p>{{director.category}}</p>
+						            		</div>						            	
 											<div class="sb-it">
 												<h6>Score:</h6>
-												<p>4.0 / 5.0</p>
+												<p>{{director.score}}</p>
 											</div>
 						            	</div>
 						            </div>
