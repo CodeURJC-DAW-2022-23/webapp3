@@ -56,19 +56,19 @@ public class User {
         return password;
     }
 
-    public void setfirstName(String name) {
-        this.firstName = name;
+    public void setfirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public String getfirstName() {
         return firstName;
     }
 
-    public void setLastname(String lastname) {
-        this.lastName = lastname;
+    public void setlastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public String getLastname() {
+    public String getlastName() {
         return lastName;
     }
 
@@ -80,11 +80,11 @@ public class User {
         return email;
     }
 
-    public void setAvatar(String avatar) {
+    public void setavatar(String avatar) {
         this.avatar = avatar;
     }
 
-    public String getAvatar() {
+    public String getavatar() {
         return avatar;
     }
 }

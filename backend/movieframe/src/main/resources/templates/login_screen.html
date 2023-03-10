@@ -17,7 +17,7 @@
     <body>
 
 <!-- BEGIN | Header -->
-<div id="header-container"></div>
+{{>header}}
 <!-- END | Header -->
 
 <div class="page-single">
@@ -63,7 +63,7 @@
 </div>
 </div>
 <!-- footer section-->
-<div id="footer-container"></div>
+{{>footer}}
 <!-- end of footer section-->
 
 <script src="js/jquery.js"></script>
@@ -71,12 +71,6 @@
 <script src="js/plugins2.js"></script>
 <script src="js/custom.js"></script>
 
-<script>
-	$(document).ready(function () {
-		$("#header-container").load("header.html");
-		$("#footer-container").load("footer.html");
-	});
-</script>
 </body>
 
 </html>
