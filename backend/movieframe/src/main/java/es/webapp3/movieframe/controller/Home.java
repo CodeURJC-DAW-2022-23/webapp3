@@ -21,12 +21,6 @@ public class Home {
         return "initial_screen";
     }
 
-    @GetMapping("/sign_up")
-    public String sign_up (){
-
-        return "signup_screen";
-    }
-
     @GetMapping("/log_in")
     public String log_in(){
 
