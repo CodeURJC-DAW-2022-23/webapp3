@@ -44,19 +44,22 @@ public class DirectorController {
         model.addAttribute("director", director);
         return "director";
     }
-    /* 
-    // Probar
-    @PostConstruct
-    public void init() {
-        Director director1 = new Director("Steven Spielberg", "Jurassic Park, E.T.", "Terror", 9.0,
-                "Ganador de tres premios Oscar.");
-        directorRepository.save(director1);
-
-        Director director2 = new Director("Christopher Nolan", "The Dark Knight, Inception", "Thriller", 8.5,
-                "Director británico.");
-        directorRepository.save(director2);
-    }
-    */
+    /*
+     * // Probar
+     * 
+     * @PostConstruct
+     * public void init() {
+     * Director director1 = new Director("Steven Spielberg", "Jurassic Park, E.T.",
+     * "Terror", 9.0,
+     * "Ganador de tres premios Oscar.");
+     * directorRepository.save(director1);
+     * 
+     * Director director2 = new Director("Christopher Nolan",
+     * "The Dark Knight, Inception", "Thriller", 8.5,
+     * "Director británico.");
+     * directorRepository.save(director2);
+     * }
+     */
     // Falta direccionar a la pelicula
 
 }

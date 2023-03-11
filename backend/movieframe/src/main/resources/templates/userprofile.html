@@ -119,24 +119,24 @@
 							</div>
 						</div>	
 					</form>
-					<form action="#" class="password">
+					<form action="/{{user.id}}/change-password" class="password" method="POST">
 						<h4>02. Change password</h4>
 						<div class="row">
 							<div class="col-md-6 form-it">
 								<label>Old Password</label>
-								<input type="text" placeholder="**********">
+								<input type="password" name="oldPassword" placeholder="**********">
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-md-6 form-it">
 								<label>New Password</label>
-								<input type="text" placeholder="***************">
+								<input type="password" name="newPassword" placeholder="***************">
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-md-6 form-it">
 								<label>Confirm New Password</label>
-								<input type="text" placeholder="*************** ">
+								<input type="password" name="confirmNewPassword" placeholder="*************** ">
 							</div>
 						</div>
 						<div class="row">

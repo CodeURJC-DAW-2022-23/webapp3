@@ -19,17 +19,20 @@ public class UserService {
 		return userRepository.findAll();
 	}
 
-	public User findById(long id) {
-		return userRepository.findById(id)
-				.orElseThrow();
-	}
-
-	public User saveOrUpdateUser(User user) {
+	// guardar un usuario
+	public User save(User user) {
 		return userRepository.save(user);
 	}
 
-	public void deleteUser(long id) {
-		userRepository.deleteById(id);
+	// buscar un usuario por su id
+	public User findById(long id) {
+		Optional<User> result = userRepository.findById(id);
+		return result.orElse(null);
+	}
+
+	// buscar un usuario por su nombre
+	public Optional<User> findByUsername(String username) {
+		return userRepository.findByUsername(username);
 	}
 
 	// Login

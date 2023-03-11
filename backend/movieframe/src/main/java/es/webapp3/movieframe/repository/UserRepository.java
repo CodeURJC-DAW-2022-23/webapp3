@@ -9,6 +9,8 @@ import es.webapp3.movieframe.model.User;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 
+    Optional<User> findById(long id);
+
     Optional<User> findByUsername(String username);
 
     Optional<User> findByEmail(String email);

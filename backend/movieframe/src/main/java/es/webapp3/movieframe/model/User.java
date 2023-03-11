@@ -32,10 +32,8 @@ public class User {
     // Cambio Contraseña
     @NotBlank
     private String oldPassword;
-
     @NotBlank
     private String newPassword;
-
     @NotBlank
     private String confirmNewPassword;
 
@@ -49,6 +47,10 @@ public class User {
         this.lastName = lastName;
         this.email = email;
         this.avatar = avatar;
+    }
+
+    public long getId() {
+        return this.id;
     }
 
     public void setUsername(String username) {

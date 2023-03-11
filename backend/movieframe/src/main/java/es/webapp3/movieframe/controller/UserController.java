@@ -1,19 +1,21 @@
 package es.webapp3.movieframe.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import ch.qos.logback.core.model.Model;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.Model;
 import es.webapp3.movieframe.model.User;
+import es.webapp3.movieframe.repository.UserRepository;
 import es.webapp3.movieframe.service.UserService;
-import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/users")
@@ -21,6 +23,8 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private UserRepository userRepository;
 
     @GetMapping("/list")
     public String listUsers(Model model) {
@@ -36,12 +40,6 @@ public class UserController {
         return "user_form";
     }
 
-    @PostMapping("/save")
-    public String saveUser(@ModelAttribute("user") User user) {
-        userService.saveOrUpdateUser(user);
-        return "redirect:/users/list";
-    }
-
     @GetMapping("/edit/{id}")
     public String editUser(@PathVariable("id") long id, Model model) {
         User user = userService.findById(id);
@@ -49,48 +47,33 @@ public class UserController {
         return "user_form";
     }
 
-    @GetMapping("/delete/{id}")
-    public String deleteUser(@PathVariable("id") long id) {
-        userService.deleteUser(id);
-        return "redirect:/users/list";
+    // Cambiar la contraseña del usuario
+    @PutMapping("/{userId}/change-password")
+    @ResponseBody
+    public ResponseEntity<String> changePassword(@PathVariable("userId") long userId,
+            @RequestParam("oldPassword") String oldPassword,
+            @RequestParam("newPassword") String newPassword,
+            @RequestParam("confirmNewPassword") String confirmNewPassword) {
+
+        Optional<User> optionalUser = userRepository.findById(userId);
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
+
+            if (!user.getPassword().equals(oldPassword)) {
+                return ResponseEntity.badRequest().body("Old password is incorrect");
+            }
+
+            if (!newPassword.equals(confirmNewPassword)) {
+                return ResponseEntity.badRequest().body("New passwords do not match");
+            }
+
+            user.setPassword(newPassword);
+            userRepository.save(user);
+
+            return ResponseEntity.ok("Password updated successfully");
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
-    // Cambiar la contraseña del usuario
-    // @GetMapping("/{id}/change-password")
-    // public String showChangePasswordForm(@PathVariable Long id, Model model) {
-    // User user = userService.findById(id);
-    // if (user != null) {
-    // model.addAttribute("user", user);
-    // model.addAttribute("changePasswordForm", new ChangePasswordForm());
-    // return "user/change_password";
-    // } else {
-    // return "redirect:/error";
-    // }
-    // }
-
-    // @PostMapping("/{id}/change-password")
-    // public String changePassword(@PathVariable Long id, @ModelAttribute @Valid
-    // ChangePasswordForm form, BindingResult bindingResult) {
-    // User user = userService.findById(id);
-    // if (user == null) {
-    // return "redirect:/error";
-    // }
-
-    // if (!userService.checkPassword(user, form.getOldPassword())) {
-    // bindingResult.rejectValue("oldPassword",
-    // "error.changePasswordForm.oldPassword", "Incorrect old password");
-    // }
-
-    // if (!form.getNewPassword().equals(form.getConfirmNewPassword())) {
-    // bindingResult.rejectValue("confirmNewPassword",
-    // "error.changePasswordForm.confirmNewPassword", "New passwords do not match");
-    // }
-
-    // if (bindingResult.hasErrors()) {
-    // return "user/change_password";
-    // }
-
-    // userService.changePassword(user, form.getNewPassword());
-    // return "redirect:/users/" + id;
-    // }
 }
