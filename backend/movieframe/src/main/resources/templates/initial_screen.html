@@ -22,7 +22,7 @@
 <body>
 <!--preloading-->
 <div id="preloader">
-    <img class="logo" src="images/logoMF.png" alt="" width="119" height="58">
+    <img class="logo" src="../images/logoMF.png" alt="" width="119" height="58">
     <div id="status">
         <span></span>
         <span></span>
@@ -69,6 +69,7 @@
 </header>
 <!-- END | Header -->
 
+<<<<<<< HEAD
 <div class="slider movie-items">
 
 	
@@ -97,6 +98,51 @@
 					
 				</div>
 				{{/movieframe}}
+=======
+<div class="slider movie-items" action="home" method="get">
+	{{#movieframe}}
+	<div class="container">
+		<div class="row">
+
+	    	<div  class="slick-multiItemSlider" >
+	    		<div class="movie-item" action="list_movies">
+
+						<div class="mv-img">
+						    <img alt="" width="285" height="437"><a href="/movie/{id}"></a>{{movie_img}}</img>
+						</div>
+						<div class="title-in">
+							<div class="cate">
+								<span class="blue">{{gender}}</span>
+							</div>
+							<h6><a href="/movie/{id}">{{title}}</a></h6>
+							<p><i class="ion-android-star"></i><span>{{movie_votes}}</span> /5</p>
+						</div>
+	    		</div>
+
+	    	</div>
+	    </div>
+	</div>
+	{{/movieframe}}
+</div>
+
+<div class="trailers">
+	{{#movieframe}}
+	<div class="container">
+		<div class="row ipad-width">
+			<div class="col-md-12">
+				<div class="title-hd">
+					<h2>TRAILER</h2>
+				</div>
+				<div class="videos">
+				 	<div class="slider-for-2 video-ft">
+
+                        <div>
+					    	<iframe class="item-video">{{trailer}}</iframe>
+					    </div>	
+					</div>
+
+				</div>   
+>>>>>>> 7a5df0f6ac3a4498567318858395120376076058
 			</div>
 		</div>
 	</div>

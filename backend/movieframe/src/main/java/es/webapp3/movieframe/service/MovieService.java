@@ -4,6 +4,14 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+<<<<<<< HEAD
+=======
+/* 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+*/
+
+>>>>>>> 7a5df0f6ac3a4498567318858395120376076058
 import es.webapp3.movieframe.model.Movie;
 import es.webapp3.movieframe.repository.MovieRepository;
 import java.util.List;
@@ -14,6 +22,7 @@ import java.util.List;
 public class MovieService {
 
     @Autowired
+
     private MovieRepository movieRepository;
 
     public Optional<Movie> findById(long id) {
@@ -45,5 +54,6 @@ public class MovieService {
 
 	public void delete(long id) {
 		movieRepository.deleteById(id);
+
 	}
 }

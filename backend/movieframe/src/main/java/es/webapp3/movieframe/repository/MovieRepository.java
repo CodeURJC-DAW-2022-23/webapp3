@@ -3,7 +3,10 @@ package es.webapp3.movieframe.repository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+<<<<<<< HEAD
 import org.springframework.data.jpa.repository.Query;
+=======
+>>>>>>> 7a5df0f6ac3a4498567318858395120376076058
 
 /* 
 import org.springframework.data.domain.Page;
@@ -18,4 +21,9 @@ public interface MovieRepository extends JpaRepository<Movie, Long>{
     Movie findSingleByTitle(String gender);
 
     List<Movie> findByGender(String gender);
+<<<<<<< HEAD
+=======
+
+    
+>>>>>>> 7a5df0f6ac3a4498567318858395120376076058
 }
