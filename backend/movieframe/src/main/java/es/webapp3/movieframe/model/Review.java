@@ -2,7 +2,7 @@ package es.webapp3.movieframe.model;
 
 import java.io.Serializable;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 @Entity
 public class Review implements Serializable{

@@ -5,12 +5,12 @@ import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.List;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Lob;
-import jakarta.persistence.OneToMany;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.OneToMany;
 
 
 @Entity
@@ -23,25 +23,23 @@ public class Movie implements Serializable{
     private String title;
     private String gender;
     private String movie_description;
-    private boolean movie_img;
-    private int movie_votes;
-    private String trailer;
-    
     @Lob
-    private Blob imageFile;
+    private Blob movie_img;
+    
+    private int movie_votes;
     
     @OneToMany
     private List<Review> reviews = new ArrayList<>();
 
     public Movie(){}
 
-    public Movie(String title,String category,String description,int votes,String spoiler){
+    public Movie(String title,String category,String description,int votes){
         super();
         this.movie_description=description;
         this.gender=category;
         this.title=title;
         this.movie_votes=votes;
-        this.trailer=spoiler;
+        //this.trailer=spoiler;
         
     }
 
@@ -58,19 +56,11 @@ public class Movie implements Serializable{
     }
 
     public Blob getImageFile(){
-        return imageFile;
+        return movie_img;
     }
 
     public void setImageFile(Blob image){
-        this.imageFile=image;
-    }
-
-    public void setImage(boolean image){
         this.movie_img=image;
-    }
-
-    public boolean getImg(){
-        return movie_img;
     }
 
     public String getCategory(){
@@ -89,7 +79,7 @@ public class Movie implements Serializable{
         return movie_votes;
     }
 
-    public String getTrailer(){
+    /*public String getTrailer(){
         return trailer;
-    }
+    }*/
 }

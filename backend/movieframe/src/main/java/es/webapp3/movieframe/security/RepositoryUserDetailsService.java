@@ -9,10 +9,12 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
 import es.webapp3.movieframe.model.User;
 import es.webapp3.movieframe.repository.UserRepository;
 
+@Service
 public class RepositoryUserDetailsService implements UserDetailsService{
 
     @Autowired
@@ -32,13 +34,5 @@ public class RepositoryUserDetailsService implements UserDetailsService{
 				user.getEncodedPassword(), roles);
 
 	}
-
-    public UserRepository getUserRepository() {
-        return userRepository;
-    }
-
-    public void setUserRepository(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
     
 }

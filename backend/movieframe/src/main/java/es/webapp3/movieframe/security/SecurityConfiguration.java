@@ -1,62 +1,52 @@
 package es.webapp3.movieframe.security;
 
-import java.security.SecureRandom;
 
+import java.security.SecureRandom;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.SecurityFilterChain;
+@Configuration
+public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+ @Autowired
+ RepositoryUserDetailsService userDetailsService;
+ 
+ @Bean
+ public PasswordEncoder passwordEncoder() {
+ return new BCryptPasswordEncoder(10, new SecureRandom());
+ }
+ @Override
+ protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+ auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+ }
+ 
+ @Override
+ protected void configure(HttpSecurity http) throws Exception {
+ // Public pages
+ http.authorizeRequests().antMatchers("/").permitAll();
+ http.authorizeRequests().antMatchers("/login").permitAll();
+ http.authorizeRequests().antMatchers("/sign_up").permitAll();
 
-@EnableWebSecurity
-public class SecurityConfiguration {
+ // Private pages (all other pages)
+ http.authorizeRequests().antMatchers("/user/new").hasAnyRole("USER");
+ http.authorizeRequests().antMatchers("/user/new").hasAnyRole("ADMIN");
+ http.authorizeRequests().antMatchers("/reviews/*").hasAnyRole("ADMIN");
+ http.authorizeRequests().antMatchers("/recommendations").hasAnyRole("ADMIN");
+ http.authorizeRequests().antMatchers("/reviews/new").hasAnyRole("USER");
+ http.authorizeRequests().antMatchers("/reviews/{user}").hasAnyRole("USER");
 
-    @Autowired
-    RepositoryUserDetailsService userDetailsService;
+ // Login form
+ http.formLogin().loginPage("/login");
+ http.formLogin().usernameParameter("username");
+ http.formLogin().passwordParameter("password");
+ http.formLogin().defaultSuccessUrl("/");
+ http.formLogin().failureUrl("/login");
 
-    @Bean
-	public PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder(10, new SecureRandom());
-	}
-
-    @Bean
-    public AuthenticationManager authenticationManager(HttpSecurity http, BCryptPasswordEncoder bCryptPasswordEncoder, UserDetailsService userDetailsService) 
-    throws Exception {
-        return http.getSharedObject(AuthenticationManagerBuilder.class)
-        .userDetailsService(userDetailsService)
-        .passwordEncoder(bCryptPasswordEncoder)
-        .and()
-        .build();
-    }
-
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-
-        // Public pages
-        http.authorizeHttpRequests().requestMatchers("/").permitAll();
-        http.authorizeHttpRequests().requestMatchers("/login").permitAll();
-        http.authorizeHttpRequests().requestMatchers("/sign_up").permitAll();
-
-        // Private pages (all other pages)
-        http.authorizeHttpRequests().requestMatchers("/show_user_reviews").hasAnyRole("USER");
-        http.authorizeHttpRequests().requestMatchers("/show_reviews").hasAnyRole("ADMIN");
-        http.authorizeHttpRequests().requestMatchers("/send_recommendations").hasAnyRole("ADMIN");
-        http.authorizeHttpRequests().anyRequest().authenticated();
-
-        // Login form
-        http.formLogin().loginPage("/login");
-        http.formLogin().usernameParameter("username");
-        http.formLogin().passwordParameter("password");
-
-        // Disable CSRF at the moment
-        http.csrf().disable();
-        return http.build();
-    }
-
+ // Disable CSRF at the moment
+ http.csrf().disable();
+ }
 }
-
