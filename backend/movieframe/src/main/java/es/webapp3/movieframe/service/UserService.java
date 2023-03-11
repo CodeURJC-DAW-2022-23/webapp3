@@ -2,55 +2,43 @@ package es.webapp3.movieframe.service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.atomic.AtomicLong;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import es.webapp3.movieframe.model.User;
 import es.webapp3.movieframe.repository.UserRepository;
-import jakarta.annotation.PostConstruct;
 
 @Service
 public class UserService {
 
-	@Autowired
-	private UserRepository usersRepository;
-	/* 
-	@PostConstruct
-	public void init() {
+    @Autowired
+    private UserRepository userRepository;
 
-		usersRepository.save(new User("edwardKennedy", "edu123456", "Edward", "edward@kennedy.com"));
-		usersRepository.save(new User("hughjackman", "maninthemiddle", "Hugh", "hugh@jack.com"));
+    public List<User> findAll() {
+        return userRepository.findAll();
+    }
 
-		for (int i = 0; i < 10; i++) {
-			usersRepository.save(new User("Username" + i, "Password" + i, "Name" + i, "Mail" + i));
-		}
-	}
-	*/
-	private AtomicLong nextId = new AtomicLong(1);
+    public User findById(long id) {
+        return userRepository.findById(id)
+                .orElseThrow();
+    }
 
-	public List<User> findUsers() {
-		return usersRepository.findAll();
-	}
+    public User saveOrUpdateUser(User user) {
+        return userRepository.save(user);
+    }
 
-	public Optional<User> findUser(Long id) {
-		return usersRepository.findById(id);
-	}
+    public void deleteUser(long id) {
+        userRepository.deleteById(id);
+    }
 
-	public void saveUser(User user) {
-
-		long id = nextId.getAndIncrement();
-
-		user.setId(id);
-		usersRepository.save(user);
-	}
-
-	// Login
-	public User authenticateUser(String username, String password) {
-		User user = userRepository.findByUsername(username);
-		if (user != null && user.isEnabled() && passwordEncoder.matches(password, user.getPassword())) {
-			return user;
-		}
-		return null;
-	}
+    // Login
+    public User authenticateUser(String username, String password) {
+        Optional<User> user = userRepository.findByUsername(username);
+        if (user.isPresent() && user.get().getPassword().equals(password)) {
+            return user.get();
+        } else {
+            return null;
+        }
+    }
 }

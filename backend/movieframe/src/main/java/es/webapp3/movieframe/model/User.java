@@ -9,7 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
-
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Component
@@ -24,9 +24,20 @@ public class User {
     private String password;
     private String firstName;
     private String lastName;
-    @Email(message = "Email is not valid")
     private String email;
     private String avatar;
+
+    @Email(message = "Email is not valid")
+
+    // Cambio Contraseña
+    @NotBlank
+    private String oldPassword;
+
+    @NotBlank
+    private String newPassword;
+
+    @NotBlank
+    private String confirmNewPassword;
 
     public User() {
     }// constructor for the database
@@ -86,5 +97,29 @@ public class User {
 
     public String getAvatar() {
         return avatar;
+    }
+
+    public String getOldPassword() {
+        return oldPassword;
+    }
+
+    public void setOldPassword(String oldPassword) {
+        this.oldPassword = oldPassword;
+    }
+
+    public String getNewPassword() {
+        return newPassword;
+    }
+
+    public void setNewPassword(String newPassword) {
+        this.newPassword = newPassword;
+    }
+
+    public String getConfirmNewPassword() {
+        return confirmNewPassword;
+    }
+
+    public void setConfirmNewPassword(String confirmNewPassword) {
+        this.confirmNewPassword = confirmNewPassword;
     }
 }
