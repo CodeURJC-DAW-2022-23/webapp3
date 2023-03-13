@@ -42,8 +42,13 @@
 
                         </ul>
                         <ul class="nav navbar-nav flex-child-menu menu-right">
+                            {{#loggedInUser}}
+                            <li class="btn btn-default dropdown-toggle lv1" style="margin-right: 5px;">Hi, {{loggedInUser.getUsername}}</li>
+                            {{/loggedInUser}}
+                            {{^loggedInUser}}
                             <li class="btn btn-default dropdown-toggle lv1" style="margin-right: 5px;"><a href="/log_in">Log in</a></li>
                             <li class="btn btn-default dropdown-toggle lv1"><a href="/sign_up">Sign up</a></li>
+                            {{/loggedInUser}}
                         </ul>
                     </div>
                     <!-- /.navbar-collapse -->

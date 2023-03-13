@@ -4,9 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import es.webapp3.movieframe.model.User;
 import es.webapp3.movieframe.repository.UserRepository;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -29,7 +31,8 @@ public class logInController {
     }
 
     @PostMapping("/log_in")
-    public String submitLogInForm(@ModelAttribute @Valid User user, BindingResult bindingResult, Model model) {
+    public String submitLogInForm(@ModelAttribute @Valid User user, BindingResult bindingResult, HttpSession session, 
+            Model model, RedirectAttributes redirectAttributes) {
 
         Optional<User> existingUser = userRepository.findByUsername(user.getUsername());
 
@@ -39,6 +42,15 @@ public class logInController {
             return "login_screen";
         }
 
+        // Set the retrieved User object to the session scope
+        User loggedInUser = existingUser.get();
+        session.setAttribute("loggedInUser", loggedInUser);
+        System.out.println("loggedInUser: " + loggedInUser.getUsername());
+
+        // Add the loggedInUser as a flash attribute
+        redirectAttributes.addFlashAttribute("loggedInUser", loggedInUser);
+
         return "redirect:/";
     }
+
 }

@@ -32,16 +32,13 @@ import es.webapp3.movieframe.repository.MovieRepository;
 import es.webapp3.movieframe.repository.UserRepository;
 import jakarta.validation.Valid;
 
-import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 
-import javax.activation.DataHandler;
 import javax.activation.DataSource;
-import javax.activation.FileDataSource;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -117,49 +114,49 @@ public class signUpController {
         userRepository.save(user);
 
 
-        // Send email to user
-        Properties properties = new Properties();
-        properties.put("mail.smtp.host", "smtp.gmail.com");
-        properties.put("mail.smtp.port", "587");
-        properties.put("mail.smtp.auth", "true");
-        properties.put("mail.smtp.starttls.enable", "true");
-        properties.put("mail.smtp.ssl.trust", "smtp.gmail.com");
-        properties.put("mail.smtp.connectiontimeout", "5000");
-        properties.put("mail.smtp.timeout", "5000");
-        properties.put("mail.smtp.writetimeout", "5000");
+        // // Send email to user
+        // Properties properties = new Properties();
+        // properties.put("mail.smtp.host", "smtp.gmail.com");
+        // properties.put("mail.smtp.port", "587");
+        // properties.put("mail.smtp.auth", "true");
+        // properties.put("mail.smtp.starttls.enable", "true");
+        // properties.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+        // properties.put("mail.smtp.connectiontimeout", "5000");
+        // properties.put("mail.smtp.timeout", "5000");
+        // properties.put("mail.smtp.writetimeout", "5000");
 
-        Session session = Session.getInstance(properties, new Authenticator() {
-            protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication("dawuniversidad@gmail.com", "vzlbaloljtxzsemj");
-            }
-        });
+        // Session session = Session.getInstance(properties, new Authenticator() {
+        //     protected PasswordAuthentication getPasswordAuthentication() {
+        //         return new PasswordAuthentication("dawuniversidad@gmail.com", "vzlbaloljtxzsemj");
+        //     }
+        // });
 
         
 
-        // Send email to user
-        MimeMessage message = new MimeMessage(session);
-        message.setFrom(new InternetAddress("dawuniversidad@gmail.com"));
-        message.setRecipient(Message.RecipientType.TO, new InternetAddress(user.getEmail()));
-        message.setSubject("Bienvenido a nuestra web!");
+        // // Send email to user
+        // MimeMessage message = new MimeMessage(session);
+        // message.setFrom(new InternetAddress("dawuniversidad@gmail.com"));
+        // message.setRecipient(Message.RecipientType.TO, new InternetAddress(user.getEmail()));
+        // message.setSubject("Bienvenido a nuestra web!");
 
-        // Create the message body
-        // Create the message body
-        MimeBodyPart textPart = new MimeBodyPart();
-        textPart.setText("Bienvenido " + user.getUsername()
-                + ",\n\nGracias por registrarte en nuestra web!\nAquí tienes un listado de películas que te pueden interesar:\n\n- The Shawshank Redemption\n- The Godfather\n- The Dark Knight\n- The Godfather: Part II\n- The Lord of the Rings: The Return of the King\n- Pulp Fiction\n- Schindler's List\n- 12 Angry Men\n- The Good, the Bad and the Ugly\n- The Lord of the Rings: The Fellowship of the Ring\n\n¡Esperamos que disfrutes de nuestra web!");
+        // // Create the message body
+        // // Create the message body
+        // MimeBodyPart textPart = new MimeBodyPart();
+        // textPart.setText("Bienvenido " + user.getUsername()
+        //         + ",\n\nGracias por registrarte en nuestra web!\nAquí tienes un listado de películas que te pueden interesar:\n\n- The Shawshank Redemption\n- The Godfather\n- The Dark Knight\n- The Godfather: Part II\n- The Lord of the Rings: The Return of the King\n- Pulp Fiction\n- Schindler's List\n- 12 Angry Men\n- The Good, the Bad and the Ugly\n- The Lord of the Rings: The Fellowship of the Ring\n\n¡Esperamos que disfrutes de nuestra web!");
 
-        MimeBodyPart attachmentPart = new MimeBodyPart();
-        DataSource source = new ByteArrayDataSource(pdfBytes, "application/pdf");
-        attachmentPart.setDataHandler(new DataHandler(source));
-        attachmentPart.setFileName("recommended_movies.pdf");
+        // MimeBodyPart attachmentPart = new MimeBodyPart();
+        // DataSource source = new ByteArrayDataSource(pdfBytes, "application/pdf");
+        // attachmentPart.setDataHandler(new DataHandler(source));
+        // attachmentPart.setFileName("recommended_movies.pdf");
 
-        MimeMultipart multipart = new MimeMultipart();
-        multipart.addBodyPart(textPart);
-        multipart.addBodyPart(attachmentPart);
+        // MimeMultipart multipart = new MimeMultipart();
+        // multipart.addBodyPart(textPart);
+        // multipart.addBodyPart(attachmentPart);
 
-        message.setContent(multipart);
+        // message.setContent(multipart);
 
-        Transport.send(message);
+        // Transport.send(message);
 
         return "redirect:/log_in";
     }
